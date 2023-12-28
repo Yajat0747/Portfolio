@@ -1,0 +1,193 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: rgb(213, 215, 230);
+  color: rgb(48, 63, 159);
+  text-align: center;
+  font-family: 'Handlee', sans-serif;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 13px;
+
+}
+
+.about{
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  column-gap: 40px;
+  padding-top: 50px;
+  text-align: center;
+  vertical-align: top;
+  padding-bottom: 100px;
+  background-color: #dee4ea;
+  background-image: linear-gradient(147deg, #dee4ea 0%, #f9fcff 74%); 
+}
+
+.info{
+  padding-right: 100px;
+  font-size: 22px;
+  color: rgba(48, 63, 159, 0.82);
+  font-family: 'Patrick Hand', cursive;
+  line-height: 32px;
+  font-weight: 550;
+}
+.skills-details h1,
+.about h1{
+  font-family: Afacad , Arial, Helvetica, sans-serif;
+  font-size : 70px;
+  padding-top : 0px;
+  color: rgb(48, 63, 159);
+}
+
+.skill-details{
+  font-weight: 1100;
+}
+
+.selfpic img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 50%;
+  align-content: center;
+  height: auto; 
+  border-radius: 200px; 
+  padding-top: 30px;
+}
+
+
+.skills{
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr;
+  column-gap: 20px;
+  padding-top: 50px;
+  text-align: center;
+  vertical-align: top;
+  padding-bottom: 50px;
+ 
+}
+.skills-ref-img img{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 80%;
+  align-content: center;
+  height: auto;  
+  padding-top: 10px;
+}
+
+.skills-details{
+  vertical-align: middle;
+  font-family: Montserrat, Arial, Helvetica, sans-serif ;
+  font-size: 28px;
+  color: rgba(48, 63, 159, 0.82);
+  line-height: 60px;
+  padding-bottom: 100px;
+  font-weight: 700;
+  padding-left: 50px;
+}
+
+.data img{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 30%;
+  align-content: center;
+  height: auto; 
+  padding-top: 30px;
+  padding-bottom: 80px;
+}
+.projects img{
+  border-color: white;
+  border-width: 2px;
+  border-radius: 24px;
+}
+.projects{
+  background-color: rgb(13, 17, 23);
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.hi h1{
+  color: white;
+  background-color: rgb(13, 17, 23);
+  margin-bottom: 0px;
+  text-align: center;
+  font-family: Afacad , Arial, Helvetica, sans-serif;
+  font-size: 44px;
+}
+
+.Resume{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  color: rgb(48, 63, 159);
+  column-gap: 12px;
+  font-size: 22px;
+}
+a{
+  text-decoration: none;
+}
+.link{
+  color: rgb(48, 63, 159);
+}
+
+.link:hover{
+  color: rgb(48, 63, 159);
+}
+
+.button{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 14px;
+  padding-right: 14px;
+  color: gb(48, 63, 159);
+  color: white;
+  transition-duration: 0.125s;
+  border: none;
+}
+.button:hover{
+  background-color:rgb(48, 63, 159) ;
+  color: white;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+.button:active{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.contact{
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-size: larger;
+  text-align: center;
+  color: whitesmoke;
+  background-color:rgb(13, 17, 23) ;
+  padding-bottom: 35px;
+}
+.image-links img{
+  width: 50px;
+}
+
+footer {
+  background-color: rgb(13, 17, 23);
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
