@@ -1,495 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yajat Chordiya</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f0e17;--paper:#fffffe;
+  --yellow:#f9c74f;--orange:#f8961e;
+  --pink:#f72585;--purple:#7209b7;
+  --blue:#4361ee;--teal:#4cc9f0;
+  --green:#06d6a0;--muted:#6c6b7b;--light:#f4f4f8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;}
 
-<title>Yajat Chordiya | Portfolio</title>
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:14px 5%;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,254,.92);backdrop-filter:blur(12px);
+  border-bottom:2.5px solid var(--ink);
+}
+.nav-logo{
+  font-family:'Space Mono',monospace;font-weight:700;font-size:18px;
+  background:var(--ink);color:var(--paper);
+  padding:4px 12px;border-radius:4px;text-decoration:none;
+}
+nav ul{list-style:none;display:flex;gap:4px;}
+nav a{
+  text-decoration:none;color:var(--ink);font-weight:500;font-size:13px;
+  padding:6px 14px;border:2px solid transparent;border-radius:100px;transition:all .2s;
+}
+nav a:hover{border-color:var(--ink);background:var(--yellow);}
 
-<link rel="stylesheet" href="style.css">
+/* HERO */
+.hero{
+  min-height:100vh;padding:100px 5% 60px;
+  display:grid;grid-template-columns:1fr 460px;gap:60px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(var(--ink) 1px,transparent 1px),linear-gradient(90deg,var(--ink) 1px,transparent 1px);
+  background-size:60px 60px;opacity:.04;z-index:0;
+}
+.hero-content{position:relative;z-index:1;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--teal);color:var(--ink);
+  padding:6px 16px;border-radius:100px;
+  font-size:13px;font-weight:600;border:2px solid var(--ink);
+  margin-bottom:24px;
+  animation:bounceIn .6s cubic-bezier(.34,1.56,.64,1) both;
+}
+.badge-dot{
+  width:8px;height:8px;background:var(--green);
+  border-radius:50%;border:2px solid var(--ink);
+  animation:pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
+.hero h1{
+  font-size:clamp(52px,8vw,96px);font-weight:700;
+  line-height:.9;letter-spacing:-.03em;margin-bottom:8px;
+  animation:slideUp .7s ease both .1s;
+}
+.hero h1 .name-line{display:block;}
+.hero h1 .accent{color:transparent;-webkit-text-stroke:3px var(--ink);}
+.hero-sub{
+  font-size:clamp(17px,2.2vw,24px);color:var(--muted);
+  font-weight:400;margin:20px 0 32px;line-height:1.4;
+  animation:slideUp .7s ease both .2s;
+}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;animation:slideUp .7s ease both .3s;}
+.pill{
+  padding:8px 18px;border-radius:100px;font-size:13px;font-weight:600;
+  border:2px solid var(--ink);cursor:default;transition:transform .2s;
+}
+.pill:hover{transform:translateY(-3px);}
+.pill-b{background:var(--blue);color:white;}
+.pill-p{background:var(--pink);color:white;}
+.pill-y{background:var(--yellow);}
+.pill-g{background:var(--green);}
+.pill-o{background:var(--orange);}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;animation:slideUp .7s ease both .4s;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;font-family:'Space Grotesk',sans-serif;
+  font-size:15px;font-weight:600;border:2px solid var(--ink);
+  border-radius:12px;cursor:pointer;text-decoration:none;transition:all .2s;
+}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:4px 4px 0 var(--ink);}
+.btn-fill{background:var(--ink);color:var(--paper);}
+.btn-ghost{background:transparent;color:var(--ink);}
+.btn-yellow{background:var(--yellow);}
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+.hero-right{position:relative;z-index:1;}
+.photo-card{
+  background:var(--paper);border:3px solid var(--ink);
+  border-radius:24px;overflow:hidden;box-shadow:8px 8px 0 var(--ink);
+}
+.photo-card img{width:100%;height:440px;object-fit:cover;object-position:top center;display:block;}
+.photo-sticker{
+  position:absolute;background:var(--yellow);border:2px solid var(--ink);
+  border-radius:12px;padding:8px 14px;font-size:13px;font-weight:700;
+  box-shadow:3px 3px 0 var(--ink);animation:float 3s ease-in-out infinite;
+  white-space:nowrap;
+}
+@keyframes float{0%,100%{transform:translateY(0) rotate(var(--r,-2deg));}50%{transform:translateY(-8px) rotate(var(--r,-2deg));}}
+.sticker-1{top:14px;right:-18px;background:var(--teal);--r:6deg;animation-delay:.4s;}
+.sticker-2{bottom:80px;left:-18px;background:var(--pink);color:white;--r:-5deg;animation-delay:.9s;}
+.sticker-3{bottom:14px;right:14px;background:var(--green);--r:3deg;animation-delay:1.4s;}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:3px solid var(--ink);}
+.stat-box{padding:16px;border-right:2px solid var(--ink);text-align:center;}
+.stat-box:last-child{border-right:none;}
+.stat-num{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;display:block;}
+.stat-lbl{font-size:11px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em;}
 
+/* MARQUEE */
+.marquee-wrap{
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  background:var(--yellow);padding:14px 0;overflow:hidden;
+}
+.marquee-inner{display:flex;gap:48px;width:max-content;animation:scroll 18s linear infinite;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.marquee-inner span{font-size:14px;font-weight:600;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;}
+.marquee-inner span.dot{color:var(--pink);font-size:20px;line-height:1;}
+
+/* SECTIONS */
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:56px;}
+.section-header h2{font-size:clamp(30px,5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1;}
+.section-tag{
+  background:var(--ink);color:var(--paper);font-size:12px;font-weight:700;
+  padding:4px 12px;border-radius:100px;font-family:'Space Mono',monospace;
+  white-space:nowrap;align-self:flex-end;margin-bottom:6px;
+}
+
+/* SKILLS */
+#skills{padding:100px 5%;}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.skill-bars{display:flex;flex-direction:column;gap:24px;}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:8px;}
+.skill-name{font-weight:600;font-size:15px;}
+.skill-pct{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--muted);}
+.skill-bar-bg{height:12px;background:var(--light);border:2px solid var(--ink);border-radius:100px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:100px;width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1);}
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.skill-chip{
+  background:var(--light);border:2px solid var(--ink);border-radius:16px;padding:20px;
+  transition:all .2s;cursor:default;
+}
+.skill-chip:hover{background:var(--yellow);transform:translate(-3px,-3px);box-shadow:4px 4px 0 var(--ink);}
+.chip-icon{font-size:26px;margin-bottom:8px;}
+.chip-title{font-weight:700;font-size:14px;margin-bottom:4px;}
+.chip-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* WORK */
+#work{padding:100px 5%;background:var(--ink);color:var(--paper);}
+#work .section-header h2{color:var(--paper);}
+#work .section-tag{background:var(--yellow);color:var(--ink);}
+.work-tabs{display:flex;gap:8px;margin-bottom:48px;}
+.wtab{
+  background:transparent;color:rgba(255,255,254,.5);
+  border:2px solid rgba(255,255,254,.2);
+  padding:10px 24px;border-radius:100px;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;
+}
+.wtab.active,.wtab:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow);}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.proj-card{
+  background:rgba(255,255,254,.05);border:2px solid rgba(255,255,254,.12);
+  border-radius:20px;padding:28px;transition:all .25s;cursor:default;position:relative;overflow:hidden;
+}
+.proj-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.proj-card:hover{background:rgba(255,255,254,.1);transform:translateY(-6px);border-color:rgba(255,255,254,.3);}
+.proj-card:hover::before{transform:scaleX(1);}
+.proj-num{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,254,.3);margin-bottom:16px;letter-spacing:.1em;}
+.proj-title{font-size:17px;font-weight:700;color:var(--paper);margin-bottom:10px;line-height:1.3;}
+.proj-desc{font-size:13px;color:rgba(255,255,254,.55);line-height:1.7;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.proj-tag{
+  font-size:11px;font-weight:600;background:rgba(255,255,254,.08);
+  color:rgba(255,255,254,.6);padding:3px 10px;border-radius:100px;border:1px solid rgba(255,255,254,.1);
+}
+.tl{display:flex;flex-direction:column;}
+.tl-item{
+  display:grid;grid-template-columns:160px 1fr;gap:32px;
+  padding:32px 0;border-bottom:1px solid rgba(255,255,254,.1);align-items:start;
+}
+.tl-date{font-family:'Space Mono',monospace;font-size:11px;color:var(--yellow);font-weight:700;letter-spacing:.06em;line-height:1.8;padding-top:4px;}
+.tl-body h3{font-size:19px;font-weight:700;margin-bottom:10px;}
+.tl-body p{font-size:14px;color:rgba(255,255,254,.6);line-height:1.8;}
+
+/* AWARDS */
+#recognitions{padding:100px 5%;}
+.awards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.award{
+  border:3px solid var(--ink);border-radius:24px;padding:36px;
+  position:relative;overflow:hidden;transition:all .2s;cursor:default;
+}
+.award:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--ink);}
+.award-bg{position:absolute;top:-10px;right:-10px;font-size:80px;opacity:.07;line-height:1;pointer-events:none;}
+.award-icon{font-size:30px;margin-bottom:14px;}
+.award h3{font-size:19px;font-weight:700;margin-bottom:10px;}
+.award p{font-size:14px;color:var(--muted);line-height:1.7;}
+.award-badge{
+  display:inline-block;font-size:11px;font-weight:700;
+  padding:4px 12px;border-radius:100px;border:2px solid var(--ink);
+  margin-top:14px;letter-spacing:.04em;text-transform:uppercase;
+}
+
+/* RESUME */
+#resume{padding:100px 5%;background:var(--yellow);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);}
+.resume-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.res-card{
+  background:var(--paper);border:3px solid var(--ink);border-radius:20px;
+  padding:32px;text-align:center;transition:all .2s;cursor:pointer;
+}
+.res-card:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--ink);}
+.res-icon{font-size:40px;margin-bottom:14px;}
+.res-title{font-size:18px;font-weight:700;margin-bottom:8px;}
+.res-desc{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+
+/* CONTACT */
+#contact{padding:100px 5%;}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-blurb{font-size:18px;color:var(--muted);line-height:1.8;margin-bottom:40px;}
+.clink{
+  display:flex;justify-content:space-between;align-items:center;
+  text-decoration:none;color:var(--ink);padding:20px 0;
+  border-bottom:2px solid var(--light);font-size:16px;font-weight:500;transition:all .2s;
+}
+.clink:hover{color:var(--pink);padding-left:8px;}
+.clink-label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;display:block;}
+.clink-arrow{font-size:20px;transition:transform .2s;}
+.clink:hover .clink-arrow{transform:translate(4px,-4px);}
+.contact-visual{
+  background:var(--ink);border-radius:28px;border:3px solid var(--ink);
+  padding:40px;color:var(--paper);box-shadow:8px 8px 0 var(--light);
+}
+.cv-label{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,254,.4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;display:block;}
+.cv-name{font-size:30px;font-weight:700;margin-bottom:8px;}
+.cv-role{color:var(--yellow);font-size:14px;font-weight:600;margin-bottom:32px;}
+.cv-divider{height:1px;background:rgba(255,255,254,.1);margin-bottom:20px;}
+.cv-row{display:flex;justify-content:space-between;font-size:13px;padding:10px 0;border-bottom:1px solid rgba(255,255,254,.06);}
+.cv-row-key{color:rgba(255,255,254,.5);}
+.cv-row-val{color:var(--paper);font-weight:500;text-align:right;}
+
+footer{
+  background:var(--ink);color:var(--paper);padding:24px 5%;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-logo{font-family:'Space Mono',monospace;font-size:15px;font-weight:700;background:var(--yellow);color:var(--ink);padding:4px 12px;border-radius:4px;}
+.footer-copy{font-size:13px;color:rgba(255,255,254,.4);}
+
+@keyframes bounceIn{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;padding-top:120px;}
+  .hero-right{display:none;}
+  .skills-layout{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr 1fr;}
+  .awards-grid,.resume-cards{grid-template-columns:1fr;}
+  .contact-layout{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  nav ul{display:none;}
+  .projects-grid{grid-template-columns:1fr;}
+  .tl-item{grid-template-columns:1fr;}
+}
+</style>
 </head>
-
 <body id="top">
 
-<!-- NAVBAR -->
-
 <nav>
-
-<ul>
-<li><a href="#top">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#work">Work</a></li>
-<li><a href="#recognitions">Recognitions</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
+  <a href="#top" class="nav-logo">YC_</a>
+  <ul>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#recognitions">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-
-<!-- HERO -->
-
 <section class="hero">
-
-<div class="hero-container">
-
-<div class="hero-text">
-
-<h1>Yajat Chordiya</h1>
-
-<p class="tagline">
-Computer Science Student • AI Builder • Systems Engineer • Sustainability Leader
-</p>
-
-<p class="intro">
-Computer Science student at VIIT Pune interested in artificial intelligence,
-automation systems, cybersecurity and scalable software development.
-I enjoy building solutions that combine technology with real-world impact.
-</p>
-
-</div>
-
-<div class="hero-image">
-<img src="image.png" alt="Yajat Headshot">
-</div>
-
-</div>
-
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span>Open to opportunities</div>
+    <h1>
+      <span class="name-line">Yajat</span>
+      <span class="name-line accent">Chordiya</span>
+    </h1>
+    <p class="hero-sub">CS Student · AI Builder · Systems Thinker · Sustainability Leader</p>
+    <div class="pill-row">
+      <span class="pill pill-b">Machine Learning</span>
+      <span class="pill pill-p">IoT Systems</span>
+      <span class="pill pill-y">Automation</span>
+      <span class="pill pill-g">Cybersecurity</span>
+      <span class="pill pill-o">Operations</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-fill">See my work →</a>
+      <a href="#contact" class="btn btn-yellow">Let's connect</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-card" style="position:relative;">
+      <img src="image.png" alt="Yajat Chordiya">
+      <span class="photo-sticker sticker-1">VIIT Pune 🎓</span>
+      <span class="photo-sticker sticker-2">SGPA 9.3 ⚡</span>
+      <span class="photo-sticker sticker-3">120+ Volunteers</span>
+      <div class="stat-row">
+        <div class="stat-box"><span class="stat-num">9</span><span class="stat-lbl">Projects</span></div>
+        <div class="stat-box"><span class="stat-num">2×</span><span class="stat-lbl">Awards</span></div>
+        <div class="stat-box"><span class="stat-num">4</span><span class="stat-lbl">Roles</span></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<!-- ABOUT -->
-
-<section id="about">
-
-<h2>About Me</h2>
-
-<p>
-I focus on building intelligent systems and practical digital tools.
-My interests include artificial intelligence, machine learning,
-automation systems, and cybersecurity analytics.
-
-Alongside technology, I work on environmental initiatives through
-Forengers and support global programs through the Office of
-International Relations.
-</p>
-
-</section>
-
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>Python</span><span class="dot">✦</span>
+    <span>Machine Learning</span><span class="dot">✦</span>
+    <span>IoT & Raspberry Pi</span><span class="dot">✦</span>
+    <span>Cybersecurity Analytics</span><span class="dot">✦</span>
+    <span>Google Apps Script</span><span class="dot">✦</span>
+    <span>Generative AI</span><span class="dot">✦</span>
+    <span>React</span><span class="dot">✦</span>
+    <span>Operations Management</span><span class="dot">✦</span>
+    <span>NLP</span><span class="dot">✦</span>
+    <span>Data Analytics</span><span class="dot">✦</span>
+    <span>Lean Six Sigma</span><span class="dot">✦</span>
+    <span>Python</span><span class="dot">✦</span>
+    <span>Machine Learning</span><span class="dot">✦</span>
+    <span>IoT & Raspberry Pi</span><span class="dot">✦</span>
+    <span>Cybersecurity Analytics</span><span class="dot">✦</span>
+    <span>Google Apps Script</span><span class="dot">✦</span>
+    <span>Generative AI</span><span class="dot">✦</span>
+    <span>React</span><span class="dot">✦</span>
+    <span>Operations Management</span><span class="dot">✦</span>
+    <span>NLP</span><span class="dot">✦</span>
+    <span>Data Analytics</span><span class="dot">✦</span>
+    <span>Lean Six Sigma</span><span class="dot">✦</span>
+  </div>
+</div>
 
 <section id="skills">
-
-<h2>Technical Skills</h2>
-
-<div class="skills-container">
-
-<div class="skill-card">
-<h3>Programming</h3>
-<p>Python, Java, C++, JavaScript</p>
-</div>
-
-<div class="skill-card">
-<h3>Web Development</h3>
-<p>HTML, CSS, JavaScript</p>
-</div>
-
-<div class="skill-card">
-<h3>AI & Machine Learning</h3>
-<p>Machine Learning, Data Analysis</p>
-</div>
-
-<div class="skill-card">
-<h3>Automation</h3>
-<p>Google Apps Script, Workflow Automation</p>
-</div>
-
-<div class="skill-card">
-<h3>IoT Systems</h3>
-<p>Raspberry Pi, NFC Systems</p>
-</div>
-
-<div class="skill-card">
-<h3>Cybersecurity</h3>
-<p>Insider Risk Analytics</p>
-</div>
-
-</div>
-
+  <div class="section-header fade-in">
+    <h2>Skills &amp; Tools</h2>
+    <span class="section-tag">What I bring</span>
+  </div>
+  <div class="skills-layout">
+    <div class="skill-bars fade-in" id="skill-bars">
+      <div class="skill-row" data-pct="88">
+        <div class="skill-top"><span class="skill-name">Python &amp; Data Science</span><span class="skill-pct">88%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="background:var(--blue)"></div></div>
+      </div>
+      <div class="skill-row" data-pct="82">
+        <div class="skill-top"><span class="skill-name">Machine Learning &amp; AI</span><span class="skill-pct">82%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="background:var(--pink)"></div></div>
+      </div>
+      <div class="skill-row" data-pct="78">
+        <div class="skill-top"><span class="skill-name">Web Development</span><span class="skill-pct">78%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="background:var(--green)"></div></div>
+      </div>
+      <div class="skill-row" data-pct="85">
+        <div class="skill-top"><span class="skill-name">Workflow Automation</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="background:var(--orange)"></div></div>
+      </div>
+      <div class="skill-row" data-pct="74">
+        <div class="skill-top"><span class="skill-name">IoT &amp; Embedded Systems</span><span class="skill-pct">74%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="background:var(--teal)"></div></div>
+      </div>
+      <div class="skill-row" data-pct="70">
+        <div class="skill-top"><span class="skill-name">Cybersecurity Analytics</span><span class="skill-pct">70%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="background:var(--purple)"></div></div>
+      </div>
+    </div>
+    <div class="skill-grid fade-in">
+      <div class="skill-chip"><div class="chip-icon">🐍</div><div class="chip-title">Python</div><div class="chip-desc">ML, automation, data, APIs</div></div>
+      <div class="skill-chip"><div class="chip-icon">🤖</div><div class="chip-title">AI / ML</div><div class="chip-desc">NLP, regression, Gen AI</div></div>
+      <div class="skill-chip"><div class="chip-icon">🌐</div><div class="chip-title">Web Dev</div><div class="chip-desc">HTML · CSS · JS · React</div></div>
+      <div class="skill-chip"><div class="chip-icon">⚡</div><div class="chip-title">Automation</div><div class="chip-desc">Apps Script, workflows</div></div>
+      <div class="skill-chip"><div class="chip-icon">📡</div><div class="chip-title">IoT</div><div class="chip-desc">RPi, NFC, GPS, sensors</div></div>
+      <div class="skill-chip"><div class="chip-icon">🔐</div><div class="chip-title">Security</div><div class="chip-desc">Insider risk, CCNA</div></div>
+    </div>
+  </div>
 </section>
-
-
-<!-- WORK -->
 
 <section id="work">
-
-<h2>My Work</h2>
-
-<div class="tabs">
-
-<button class="tab active" onclick="openTab(event,'tech')">Technical</button>
-<button class="tab" onclick="openTab(event,'leadership')">Leadership</button>
-
-</div>
-
-
-<!-- TECHNICAL -->
-
-<div id="tech" class="tabcontent">
-
-<div class="grid">
-
-<div class="card">
-<h3>House Price Prediction Model</h3>
-
-<p>
-Developed a machine learning model to predict real estate prices using
-historical housing datasets.
-</p>
-
-<p>
-The system analyzes multiple parameters such as location, size,
-and property features to generate accurate price predictions using
-regression algorithms.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>Task Automation System</h3>
-
-<p>
-Designed an automation platform using Google Apps Script and
-Google Sheets to streamline repetitive operational workflows.
-</p>
-
-<p>
-The system automates data processing, report generation, and
-task management, reducing manual effort and improving efficiency.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>College Administration Management System</h3>
-
-<p>
-Developed a web-based platform to manage student records,
-administrative operations, and institutional workflows.
-</p>
-
-<p>
-The system helps organize academic data, streamline
-administrative tasks, and improve accessibility of
-institutional information.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>Smart IoT Vaccine Tracking System</h3>
-
-<p>
-Designed an IoT-based vaccine tracking system using NFC,
-Raspberry Pi, GPS, and environmental sensors.
-</p>
-
-<p>
-The system monitors vaccine transportation conditions including
-temperature, location, and delivery checkpoints to ensure
-safety throughout the supply chain.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>Inquiry & Quotation Management System</h3>
-
-<p>
-Built an enterprise software solution that collects business
-inquiries and automatically distributes them to relevant vendors.
-</p>
-
-<p>
-The system generates structured quotations and ensures each
-vendor receives only the inquiries relevant to their services.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>Traffic Prediction System</h3>
-
-<p>
-Developed a machine learning model designed to analyze
-transportation datasets and predict traffic congestion patterns.
-</p>
-
-<p>
-The system can help optimize traffic planning and assist in
-identifying high congestion routes during peak hours.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>GenAI Resume Analyzer</h3>
-
-<p>
-Built a Generative AI based tool that evaluates resumes and
-provides feedback based on job role requirements.
-</p>
-
-<p>
-The system analyzes resume structure, skills, and experience
-and suggests improvements to increase candidate suitability.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>AirOceans Corporate Website</h3>
-
-<p>
-Designed and developed the official corporate website for
-AirOceans Transcontinental Limited.
-</p>
-
-<p>
-The website improves the company’s digital presence,
-provides structured information about services,
-and enhances accessibility for potential clients.
-</p>
-
-</div>
-
-
-<div class="card">
-<h3>Enterprise Insider Risk Analytics (EIRA)</h3>
-
-<p>
-Developed a cybersecurity analytics system focused on detecting
-insider threats within enterprise networks.
-</p>
-
-<p>
-The platform analyzes behavioral patterns and system activity
-to identify suspicious actions and potential security risks.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- LEADERSHIP -->
-
-<div id="leadership" class="tabcontent">
-
-<div class="timeline">
-
-<div class="event">
-<h3>Forengers – Environmental Organization</h3>
-
-<p>
-Actively involved in planning and executing large-scale environmental
-initiatives including plantation drives, sapling monitoring systems,
-and sustainability programs across multiple zones of the city.
-</p>
-
-<p>
-Worked on improving operational coordination between volunteers,
-NGOs, and corporate partners to ensure successful execution of
-environmental projects.
-</p>
-
-</div>
-
-
-<div class="event">
-<h3>Automation Initiative – Forengers</h3>
-
-<p>
-Leading the development of automation tools for environmental
-monitoring and project management using Google Apps Script and
-Google Sheets.
-</p>
-
-<p>
-Designed systems to track sapling growth, manage data collection,
-and generate structured reports across multiple plantation zones,
-reducing manual data entry and improving efficiency.
-</p>
-
-</div>
-
-
-<div class="event">
-<h3>Office of International Relations – VIIT</h3>
-
-<p>
-Contributing to international engagement initiatives by supporting
-global collaboration programs, student exchange activities,
-and institutional partnerships.
-</p>
-
-<p>
-Assisting in coordination of international academic programs
-and helping build stronger global connections for the institution.
-</p>
-
-</div>
-
-
-<div class="event">
-<h3>City-Scale Environmental Projects</h3>
-
-<p>
-Collaborated with NGOs, volunteers, and corporate partners to
-execute environmental initiatives across multiple areas of the city.
-</p>
-
-<p>
-Focused on improving coordination, volunteer engagement,
-and project execution for sustainability-focused programs.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- RECOGNITIONS -->
+  <div class="section-header fade-in">
+    <h2>My Work</h2>
+    <span class="section-tag">Projects &amp; leadership</span>
+  </div>
+  <div class="work-tabs">
+    <button class="wtab active" onclick="openTab(event,'tech')">⚙️ Technical</button>
+    <button class="wtab" onclick="openTab(event,'lead')">🚀 Leadership</button>
+  </div>
+
+  <div id="tech" class="tabcontent">
+    <div class="projects-grid">
+      <div class="proj-card fade-in"><div class="proj-num">01 · ML</div><div class="proj-title">House Price Prediction</div><div class="proj-desc">Regression model analyzing location, size &amp; features to predict real estate prices from historical datasets.</div><div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ML</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">02 · Automation</div><div class="proj-title">Task Automation System</div><div class="proj-desc">Google Apps Script platform automating data processing, reporting &amp; task management across operations.</div><div class="proj-tags"><span class="proj-tag">Apps Script</span><span class="proj-tag">Sheets</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">03 · IoT 🔬</div><div class="proj-title">Smart Vaccine Tracker</div><div class="proj-desc">NFC + Raspberry Pi + GPS monitoring vaccine cold-chain across 4+ checkpoints. Research paper accepted via Microsoft CMT.</div><div class="proj-tags"><span class="proj-tag">RPi</span><span class="proj-tag">NFC</span><span class="proj-tag">Python</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">04 · Enterprise</div><div class="proj-title">Inquiry &amp; Quotation System</div><div class="proj-desc">Vendor workflow routing inquiries &amp; auto-generating quotations. Reduced manual processing by 40%.</div><div class="proj-tags"><span class="proj-tag">JS</span><span class="proj-tag">Automation</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">05 · GenAI</div><div class="proj-title">GenAI Resume Analyzer</div><div class="proj-desc">AI tool using NLP to evaluate resumes against job requirements — scoring fit and suggesting improvements.</div><div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">NLP</span><span class="proj-tag">Gen AI</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">06 · Security</div><div class="proj-title">Enterprise Insider Risk Analytics</div><div class="proj-desc">Cybersecurity platform detecting insider threats via behavioral pattern analysis — automated risk reporting.</div><div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Analytics</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">07 · ML</div><div class="proj-title">Traffic Prediction System</div><div class="proj-desc">ML model forecasting congestion patterns and optimizing route planning during peak hours.</div><div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ML</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">08 · Web</div><div class="proj-title">College Admin System</div><div class="proj-desc">Web platform managing student records, approvals, and institutional workflows.</div><div class="proj-tags"><span class="proj-tag">HTML</span><span class="proj-tag">JS</span></div></div>
+      <div class="proj-card fade-in"><div class="proj-num">09 · Web</div><div class="proj-title">AirOceans Corporate Website</div><div class="proj-desc">Official website for AirOceans Transcontinental — improving digital presence and client accessibility.</div><div class="proj-tags"><span class="proj-tag">HTML</span><span class="proj-tag">CSS</span><span class="proj-tag">JS</span></div></div>
+    </div>
+  </div>
+
+  <div id="lead" class="tabcontent" style="display:none">
+    <div class="tl">
+      <div class="tl-item fade-in"><div class="tl-date">JAN 2026<br>PRESENT</div><div class="tl-body"><h3>Head — Office of International Relations · VIIT</h3><p>Leading international collaborations with global universities. Structuring communication and documentation workflows that improve stakeholder coordination.</p></div></div>
+      <div class="tl-item fade-in"><div class="tl-date">JUN 2025<br>JAN 2026</div><div class="tl-body"><h3>IT Manager · AirOceans Transcontinental</h3><p>Coordinated digital operations — website, vendor inquiry routing, internal reporting. Cut communication delays by 40% through structured process design.</p></div></div>
+      <div class="tl-item fade-in"><div class="tl-date">FEB 2024<br>OCT 2025</div><div class="tl-body"><h3>Head of Operations · Forengers Foundation</h3><p>Led operations across 6 city zones, mentoring 120+ volunteers. Planted 1000+ saplings. Grew volunteer engagement by 40% and data visibility by 60%.</p></div></div>
+      <div class="tl-item fade-in"><div class="tl-date">ONGOING</div><div class="tl-body"><h3>Automation Lead · Forengers</h3><p>Building Apps Script tools for environmental monitoring — tracking sapling growth, data collection, and structured reporting across plantation zones.</p></div></div>
+    </div>
+  </div>
+</section>
 
 <section id="recognitions">
-
-<h2>Recognitions</h2>
-
-<div class="timeline">
-
-<div class="event">
-<h3>Execution Expert Award – 2025</h3>
-<p>
-Recognized for outstanding execution and leadership in organizing
-large-scale environmental initiatives and operational projects.
-</p>
-</div>
-
-<div class="event">
-<h3>Execution Expert Award – 2024</h3>
-<p>
-Awarded for consistent contribution and successful execution
-of sustainability initiatives across multiple projects.
-</p>
-</div>
-
-<div class="event">
-<h3>Research Paper Acceptance – Microsoft CMT</h3>
-<p>
-Research paper on the <strong>Smart IoT Vaccine Tracking System</strong>
-accepted for review and management through the Microsoft CMT conference system.
-</p>
-</div>
-
-<div class="event">
-<h3>Technology Development Contribution – AirOceans</h3>
-<p>
-Recognized for developing the corporate website for
-AirOceans Transcontinental Limited and improving its digital presence.
-</p>
-</div>
-
-</div>
-
+  <div class="section-header fade-in"><h2>Recognitions</h2><span class="section-tag">Achievements</span></div>
+  <div class="awards-grid">
+    <div class="award fade-in"><div class="award-bg">🏆</div><div class="award-icon">🏆</div><h3>Execution Expert Award — 2025</h3><p>Recognized for outstanding execution and leadership in large-scale environmental initiatives across the city.</p><span class="award-badge" style="background:var(--yellow)">Forengers Foundation</span></div>
+    <div class="award fade-in"><div class="award-bg">🥇</div><div class="award-icon">🥇</div><h3>Execution Expert Award — 2024</h3><p>Awarded for consistent contribution and delivery of sustainability initiatives across multiple regional zones.</p><span class="award-badge" style="background:var(--yellow)">Forengers Foundation</span></div>
+    <div class="award fade-in"><div class="award-bg">📄</div><div class="award-icon">📄</div><h3>Research Paper Acceptance</h3><p>Smart IoT Vaccine Tracking System research accepted through the Microsoft CMT academic conference system.</p><span class="award-badge" style="background:var(--teal)">Microsoft CMT</span></div>
+    <div class="award fade-in"><div class="award-bg">💻</div><div class="award-icon">💻</div><h3>Technology Contribution — AirOceans</h3><p>Formally recognized for developing corporate website and digital infrastructure for AirOceans Transcontinental.</p><span class="award-badge" style="background:var(--green)">AirOceans</span></div>
+  </div>
 </section>
 
-
-<!-- RESUME -->
-
-<section class="resume">
-
-<h2>Resume</h2>
-
-<div class="resume-box">
-
-<div class="resume-buttons">
-
-<button class="resume-btn" onclick="window.open('technical_resume.pdf')">
-Technical Resume
-</button>
-
-<button class="resume-btn" onclick="window.open('leadership_resume.pdf')">
-Leadership & Operations Resume
-</button>
-
-<button class="resume-btn" onclick="window.open('comprehensive_resume.pdf')">
-Comprehensive Resume
-</button>
-
-</div>
-
-</div>
-
+<section id="resume">
+  <div class="section-header fade-in"><h2>Download Resume</h2><span class="section-tag">3 versions</span></div>
+  <div class="resume-cards">
+    <div class="res-card fade-in" onclick="window.open('technical_resume.pdf')"><div class="res-icon">⚙️</div><div class="res-title">Technical Resume</div><div class="res-desc">Projects, tech stack, engineering roles. Best for software &amp; AI positions.</div><span class="btn btn-fill" style="display:inline-flex;font-size:13px;padding:10px 20px;">Download PDF →</span></div>
+    <div class="res-card fade-in" onclick="window.open('leadership_resume.pdf')"><div class="res-icon">🚀</div><div class="res-title">Leadership Resume</div><div class="res-desc">Ops management, team leadership. Best for management &amp; program roles.</div><span class="btn btn-fill" style="display:inline-flex;font-size:13px;padding:10px 20px;">Download PDF →</span></div>
+    <div class="res-card fade-in" onclick="window.open('comprehensive_resume.pdf')"><div class="res-icon">📋</div><div class="res-title">Comprehensive Resume</div><div class="res-desc">Full picture — tech, ops, leadership and everything in between.</div><span class="btn btn-fill" style="display:inline-flex;font-size:13px;padding:10px 20px;">Download PDF →</span></div>
+  </div>
 </section>
-
-
-<!-- CONTACT -->
 
 <section id="contact">
-
-<h2>Contact</h2>
-
-<div class="contact-grid">
-
-<div class="contact-card">
-<a href="mailto:yajat0747@gmail.com">
-<h3>Email</h3>
-<p>yajat0747@gmail.com</p>
-</a>
-</div>
-
-<div class="contact-card">
-<a href="tel:+917387337125">
-<h3>Phone</h3>
-<p>+91 7387337125</p>
-</a>
-</div>
-
-<div class="contact-card">
-<a href="https://www.linkedin.com/in/yajat-chordiya" target="_blank">
-<h3>LinkedIn</h3>
-<p>linkedin.com/in/yajat-chordiya</p>
-</a>
-</div>
-
-</div>
-
+  <div class="section-header fade-in"><h2>Let's Talk</h2><span class="section-tag">Get in touch</span></div>
+  <div class="contact-layout">
+    <div>
+      <p class="contact-blurb">Open to software development, AI, operations, and anything at the intersection of tech and real-world impact.</p>
+      <div>
+        <a href="mailto:yajat0747@gmail.com" class="clink"><div><span class="clink-label">Email</span>yajat0747@gmail.com</div><span class="clink-arrow">↗</span></a>
+        <a href="tel:+917387337125" class="clink"><div><span class="clink-label">Phone</span>+91 73873 37125</div><span class="clink-arrow">↗</span></a>
+        <a href="https://www.linkedin.com/in/yajat-chordiya" target="_blank" class="clink"><div><span class="clink-label">LinkedIn</span>linkedin.com/in/yajat-chordiya</div><span class="clink-arrow">↗</span></a>
+      </div>
+    </div>
+    <div class="contact-visual fade-in">
+      <span class="cv-label">Quick Profile</span>
+      <div class="cv-name">Yajat Chordiya</div>
+      <div class="cv-role">CS Student at VIIT Pune · AI &amp; Systems Builder</div>
+      <div class="cv-divider"></div>
+      <div class="cv-row"><span class="cv-row-key">University</span><span class="cv-row-val">VIIT, Pune (2023–27)</span></div>
+      <div class="cv-row"><span class="cv-row-key">CGPA / SGPA</span><span class="cv-row-val">8.49 / 9.3</span></div>
+      <div class="cv-row"><span class="cv-row-key">Certification</span><span class="cv-row-val">AI in Cybersecurity — UCSI</span></div>
+      <div class="cv-row"><span class="cv-row-key">Current Role</span><span class="cv-row-val">Head, Int'l Relations — VIIT</span></div>
+      <div class="cv-row"><span class="cv-row-key">Focus</span><span class="cv-row-val">AI · Automation · IoT · Security</span></div>
+      <div class="cv-row"><span class="cv-row-key">Location</span><span class="cv-row-val">Pune, India</span></div>
+    </div>
+  </div>
 </section>
 
-
 <footer>
-
-© 2026 Yajat Chordiya
-
+  <span class="footer-logo">YC_</span>
+  <span class="footer-copy">© 2026 Yajat Chordiya — Pune, India</span>
 </footer>
 
-<script src="script.js"></script>
+<script>
+function openTab(evt, name) {
+  document.querySelectorAll('.tabcontent').forEach(t => t.style.display='none');
+  document.querySelectorAll('.wtab').forEach(t => t.classList.remove('active'));
+  document.getElementById(name).style.display='block';
+  evt.currentTarget.classList.add('active');
+}
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 
+const barIO = new IntersectionObserver(entries => {
+  if(entries[0].isIntersecting) {
+    document.querySelectorAll('#skill-bars .skill-row').forEach((row,i) => {
+      setTimeout(() => {
+        row.querySelector('.skill-bar-fill').style.width = row.dataset.pct+'%';
+      }, 150 + i*120);
+    });
+    barIO.disconnect();
+  }
+},{threshold:.3});
+const sb = document.getElementById('skill-bars');
+if(sb) barIO.observe(sb);
+</script>
 </body>
-
 </html>
